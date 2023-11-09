@@ -31,16 +31,19 @@ img {
 
 .page_wrapper {
   min-height: 100vh;
-  
+  position: relative;
   background-size: cover;
   background-position: center;
   background-image: url(https://images.unsplash.com/photo-1549863897-3aa27a8b31da?auto=format&fit=crop&q=80&w=2070&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);
 }
 
 .container {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   width: 90%;
   max-width: 1200px;
-  margin: 0 auto;
   font-family: 'Montserrat', sans-serif;
 }
 
@@ -117,10 +120,17 @@ img {
   cursor: pointer;
   padding: 10px;
   width: 40px;
-
 }
 
-
+.invalid_name {
+  margin-left: auto;
+  width: max-content;
+  font-size: 18px;
+  padding: 10px;
+  border-radius: 20px;
+  color: #4a0303;
+  background-color: rgba(255, 255, 255, .6);
+}
 .cards_today {
   display: flex;
   gap: 50px;
@@ -129,7 +139,6 @@ img {
 }
 .card {
   border-radius: 20px;
-  /* filter: blur(8px); */
   background: rgba(79, 79, 79, .7);
   box-shadow: 2px 5px 25px -3px rgba(180, 180, 180, 0.25);
   padding: 20px;
@@ -168,7 +177,7 @@ img {
 }
 .card_feel-like {
   width: 100%;
-  max-width: 150px;
+  max-width: max-content;
 }
 .weather_header {
   display: flex;
@@ -182,9 +191,6 @@ img {
   color: #4793FF;
   font-size: 96px;
   font-weight: 500;
-  
-  /* font-size: 40px; */
-  /* margin-bottom: 15px; */
 }
 .weather_today {
   font-size: 40px;
