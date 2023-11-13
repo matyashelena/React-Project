@@ -11,6 +11,8 @@ import clear from './images/clear.png';
 import snow from './images/snow.png';
 import drizzle from './images/drizzle.png';
 import './App.css';
+import moment from 'moment';
+import Moment from 'react-moment';
 import React, { useState } from 'react'
 
 const API_KEY = 'aaa362ec11316d74bc1716de935b46d2';
@@ -28,10 +30,15 @@ function App() {
 
 function Page() {
   const [value, setValue] = useState('');
-  const [weather, setWeather] = useState({});  
+  const [weather, setWeather] = useState({});
 
   const searchHandler = () => {
     let localUrl = `${API_URL}${value}&appid=${API_KEY}`;
+    // let lon = weather.coord.lon;
+    // let lat = weather.coord.lat;
+    // let fiveDaysUrl = `api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${API_KEY}`;
+    // sata(fiveDaysUrl)
+    // console.log(fiveDaysUrl);
     fetch(localUrl, options)
       .then((res) => res.json())
       .then((response) => {
@@ -39,9 +46,61 @@ function Page() {
         console.log(response);
         console.log(weather);
         console.log(response.weather);
+        // console.log(lon);
+        // console.log(lat);
         
       })
       .catch(err => console.error(err))
+
+
+    //   fetch(fiveDaysUrl, options)
+    //   .then(response => response.json())
+    //   .then(data => {
+    //     // Filter the forecasts to get only one forecast per day
+    //     console.log(data);
+    //     console.log(data.list);
+
+
+    //     const uniqueForecastDays = [];
+    //     const fiveDaysForecast = data.list.filter(forecast => {
+    //         const forecastDate = new Date(forecast.dt_txt).getDate();
+    //         console.log(forecastDate);
+    //         if (!uniqueForecastDays.includes(forecastDate)) {
+    //             return uniqueForecastDays.push(forecastDate);
+    //         }
+    //         console.log(uniqueForecastDays);
+    //     });
+
+        
+
+    //     // Creating weather cards and adding them to the DOM
+    //     fiveDaysForecast.forEach((weatherItem, index) => {
+    //         const html = createWeatherCard(cityName, weatherItem, index);
+    //         console.log(index);
+    //         console.log(fiveDaysForecast);
+    //         if (index === 0) {
+    //             currentWeatherDiv.insertAdjacentHTML("beforeend", html);
+    //         } else {
+    //             weatherCardsDiv.insertAdjacentHTML("beforeend", html);
+    //         }
+    //     });        
+    // }).catch(() => {
+    //     alert("An error occurred while fetching the weather forecast!");
+    // });
+
+
+    //   fetch(fiveDaysUrl, options)
+    //   .then((res) => res.json())
+    //   .then((response) => {
+    //    response.weather ? setWeather(response) : setWeather ({})
+    //     console.log(response);
+    //     console.log(weather);
+    //     console.log(response.weather);
+    //     console.log(lon);
+    //     console.log(lat);
+        
+    //   })
+    //   .catch(err => console.error(err))
   }
 
   return (
@@ -113,14 +172,17 @@ function Button(props) {
 }
 
 function Main(props) {
-  console.log(props.weather.weather[0].main);
+
   let icon_weather;
   const icon_desc = props.weather.weather[0].main;
   switch (icon_desc) {
     case 'Clouds':
       icon_weather = clouds;
       break;
-    case 'Smoke':
+    case 'Smoke' || 'Haze':
+      icon_weather = humidity;
+      break;
+    case 'Haze':
       icon_weather = humidity;
       break;
     case 'Rain':
@@ -140,17 +202,22 @@ function Main(props) {
       break;
   }
   return (
+
     <main weather={props.weather} className="cards_today">
         <div className="card card_city">
           <div className="weather_header">
             <div className="weather_main">
               <div className="weather_temp">{props.weather.main.temp.toFixed()}°</div>
-              <div className="weather_today">Today</div>
+              <div className="weather_today">Today is: 
+                <p className='moment'>{moment().format('dddd')}</p> 
+                
+              </div>
             </div>
             <div className="weather_icon">
               <img src={icon_weather} alt=''/>
             </div>
           </div>
+          <div className='weather_time'>{moment().format('LL')}</div>
           <div className="weather_time">Now: {new Date().toLocaleTimeString()}</div>
           <div className="weather_city">City: {props.weather.name}</div>
         </div>
