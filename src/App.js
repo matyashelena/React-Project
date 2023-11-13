@@ -4,6 +4,12 @@ import icon_thermometer from './images/thermometer.svg'
 import icon_humidity from './images/humidity.svg';
 import icon_evaporator from './images/evaporator.svg';
 import icon_wind from './images/wind.svg';
+import clouds from './images/clouds.png';
+import humidity from './images/humidity.png';
+import rain from './images/rain.png';
+import clear from './images/clear.png';
+import snow from './images/snow.png';
+import drizzle from './images/drizzle.png';
 import './App.css';
 import React, { useState } from 'react'
 
@@ -107,6 +113,32 @@ function Button(props) {
 }
 
 function Main(props) {
+  console.log(props.weather.weather[0].main);
+  let icon_weather;
+  const icon_desc = props.weather.weather[0].main;
+  switch (icon_desc) {
+    case 'Clouds':
+      icon_weather = clouds;
+      break;
+    case 'Smoke':
+      icon_weather = humidity;
+      break;
+    case 'Rain':
+      icon_weather = rain;
+      break;
+    case 'Clear':
+      icon_weather = clear;
+      break;
+    case 'Snow':
+      icon_weather = snow;
+      break;
+    case 'Drizzle':
+      icon_weather = drizzle;
+      break;
+    default:
+      icon_weather = `https://openweathermap.org/img/w/${props.weather.weather[0].icon}.png`;
+      break;
+  }
   return (
     <main weather={props.weather} className="cards_today">
         <div className="card card_city">
@@ -116,7 +148,7 @@ function Main(props) {
               <div className="weather_today">Today</div>
             </div>
             <div className="weather_icon">
-              <img src={`https://openweathermap.org/img/w/${props.weather.weather[0].icon}.png`} alt=''/>
+              <img src={icon_weather} alt=''/>
             </div>
           </div>
           <div className="weather_time">Now: {new Date().toLocaleTimeString()}</div>

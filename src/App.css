@@ -197,8 +197,8 @@ img {
   margin-bottom: 20px;
 }
 .weather_icon {
-  width: 100px;
-  height: 100px;
+  width: 200px;
+  /* height: 200px; */
 }
 .weather_time,
 .weather_city {
