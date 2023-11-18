@@ -51,6 +51,7 @@ function Page() {
   const [lon, setLon] = useState(0);
   const [lat, setLat] = useState(0);
   const [weatherdayly, setWeatherdayly] = useState({});
+  const [isErrore, setIsErrore] = useState(false);
 
   useEffect(() => {
     getWeatherDaily();
@@ -62,7 +63,10 @@ function Page() {
     }
     let localUrlDaily = `${API_URL_DAILY}lat=${lat}&lon=${lon}&appid=${API_KEY}`;
     fetch(localUrlDaily, options)
-    .then((res) => res.json())
+    .then((res) => {
+      console.log(res);
+      return res.json()
+    }) 
     .then((response) => {
       response ? setWeatherdayly(response) : setWeatherdayly ({});
       console.log(response);
@@ -73,12 +77,22 @@ function Page() {
   const searchHandler = () => {
     let localUrl = `${API_URL}${value}&appid=${API_KEY}`;
     fetch(localUrl, options)
-      .then((res) => res.json())
+      .then((res) => {
+        if(res.status === 404) {
+          setIsErrore(true);
+          return false;
+        }
+        console.log(res);
+        return res.json()
+      })
       .then((response) => {
        response ? setWeather(response) : setWeather ({})
-       console.log(response);
+      //  console.log(response);
+      if (response) {
         setLon(response.coord.lon);
         setLat(response.coord.lat);
+      }
+        
       })
       .catch(err => console.error(err))
   }
@@ -88,13 +102,16 @@ function Page() {
         <SearcField 
         inputHandler = {value => setValue(value)}
         searchHandler = {searchHandler}
+        isErrore = {isErrore}
         value = {value}/>
 
-        {typeof weather.main !== "undefined" 
+        {weather && weather.main 
         ? <Main weather={weather}/> 
-        : <p className='invalid_name '>Enter valid name</p>}
+        : null}
 
-        {typeof weatherdayly.list !== 'undefined'
+        {isErrore && <p className='invalid_name'> City not found</p>}
+
+        {Object.keys(weather).length && Object.keys(weatherdayly).length
         ? <DailyWeather weather={weather} weatherdayly={weatherdayly}/>
         : null}
         
@@ -115,9 +132,10 @@ function SearcField(props) {
         <Logo/>
       <div className="search">
         <Input type='search' placeholder='search city' value={props.value} onInputChange={inputHandler}/>
-        <Button clicker={searchHandler}>
-        <img src={icon_search} alt=''/>
-        </Button>
+      <Button clicker={searchHandler}>
+            <img src={icon_search} alt=''/>
+            </Button>
+        
       </div>
       </header>      
   )
@@ -245,15 +263,15 @@ function Main(props) {
 }
 
 function DailyWeather(props) {
+
   const [toggle, setToggle] = useState(1);
   const  toggleTab = (index) => {
     setToggle(index);
   }
 
-  
-  const sunrise = props.weather.sys.sunrise;
+  const sunrise = props.weather?.sys?.sunrise || 1600855031;
   const sunriseRender = new Date(sunrise*1000).toLocaleTimeString();
-  const sunset = props.weather.sys.sunset;
+  const sunset = props.weather?.sys?.sunset || 1600855031;
   const sunsetRender = new Date(sunset*1000).toLocaleTimeString();
   
   return (
