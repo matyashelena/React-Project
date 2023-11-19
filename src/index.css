@@ -1,0 +1,23 @@
+:root {
+  --body_bg: #fff;
+  --body_color: #000;
+  --search_color: #000;
+  --card_bg: rgb(158, 210, 234);
+  --search_bg: rgb(158, 210, 234);
+  --tabs_color: #000;
+  --card_daily_bg: rgba(71, 147, 255, .5);
+}
+
+[data-theme = 'dark'] {
+  --body_bg: #0D1117;
+  --body_color: #939CB0;
+  --search_color: #fff;
+  --card_bg: #4F4F4F;
+  --search_bg: rgba(79, 79, 79, .9);
+  --tabs_color: #fff;
+  --card_daily_bg: #2E3035;
+}
+
+* {
+  transition: all .3s ease-in-out;
+}

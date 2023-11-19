@@ -1,3 +1,5 @@
+import DarkMode from './components/DarkMode';
+
 import logo_header from './images/header_logo.svg';
 import icon_search from './images/search.png';
 import icon_thermometer from './images/thermometer.svg'
@@ -14,15 +16,11 @@ import drizzle from './images/drizzle1.png';
 import fog from './images/fog.png'
 import sunrise_icon from './images/sunrise.png';
 import sunset_icon from './images/sunset.png';
-import pop_icon from './images/pop.png';
 import min_temp from './images/min_temp.png';
 import max_temp from './images/max_temp1.png';
-// import TimePicker from 'react-time-picker';
-
 import './App.css';
 import moment from 'moment';
-// import Moment from 'react-moment';
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
 
 const API_KEY = 'aaa362ec11316d74bc1716de935b46d2';
 const API_URL="https://api.openweathermap.org/data/2.5/weather?units=metric&q=";
@@ -32,7 +30,7 @@ const options = {
 }
 function App() {
   return (
-    <div className="App page_wrapper dark">
+    <div className="App page_wrapper">
       <Page/>
       <BgBlock/>
     </div>
@@ -128,13 +126,13 @@ function SearcField(props) {
     props.searchHandler && props.searchHandler();
   }
   return (
+      
       <header className="header">
+         <DarkMode/>
         <Logo/>
       <div className="search">
-        <Input type='search' placeholder='search city' value={props.value} onInputChange={inputHandler}/>
-      <Button clicker={searchHandler}>
-            <img src={icon_search} alt=''/>
-            </Button>
+      <Input type='search' placeholder='search city' value={props.value} onInputChange={inputHandler}/>
+      <Button clicker={searchHandler}><img src={icon_search} alt=''/></Button>
         
       </div>
       </header>      
@@ -294,15 +292,18 @@ function DailyWeather(props) {
           <img className='card_dayly-img' src={sunset_icon} alt="" />
         </div>
         <div className="card_dayly">
-          <p className='card_dayly-date'>Precipitation probability: {props.weatherdayly.list[0].pop}%</p>
-          <img className='card_dayly-img' src={pop_icon} alt="" />
+          <h3 className='card_dayly-date'>Precipitation probability:</h3>
+          <p className='card_dayly-date'>{props.weatherdayly.list[0].pop}%</p>
+          <img className='card_dayly-img' src={icon_evaporator} alt="" />
         </div>
         <div className="card_dayly">
-          <p className='card_dayly-date'>Minimum temperature: {props.weather.main.temp_min.toFixed(1)}°C</p>
+          <h3 className='card_dayly-date'>Minimum temperature:</h3>
+          <p className='card_dayly-date'>{props.weather.main.temp_min.toFixed(1)}°C</p>
           <img className='card_dayly-img' src={min_temp} alt="" />
         </div>
         <div className="card_dayly">
-          <p className='card_dayly-date'>Maximum temperature: {props.weather.main.temp_max.toFixed(1)}°C</p>
+          <h3 className='card_dayly-date'>Maximum temperature:</h3>
+          <p className='card_dayly-date'>{props.weather.main.temp_max.toFixed(1)}°C</p>
           <img className='card_dayly-img' src={max_temp} alt="" />
         </div>
       </div>

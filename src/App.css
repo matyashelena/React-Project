@@ -39,6 +39,8 @@ img {
   justify-content: center;
   align-items: center;
   min-height: 100vh;
+  background: var(--body_bg);
+  color: var(--body_color);
   /* min-height: 100vh;
   /* position: relative; */ 
   /* display: flex;
@@ -60,7 +62,7 @@ img {
   background-position: center;
   opacity: .5;
 }
-.page_wrapper.dark {
+/* .page_wrapper.dark {
   background: #0D1117;
   color: #939CB0;
 }
@@ -96,7 +98,7 @@ img {
 }
 .page_wrapper.dark .tabs {
   background: #4F4F4F;
-}
+} */
 .container {
   z-index: 3;
   margin: 0 auto;
@@ -152,6 +154,7 @@ img {
   align-items: center;
   padding: 10px 20px;
   border-radius: 10px;
+  background: var(--search_bg);
 }
 
 .search_input {
@@ -161,6 +164,7 @@ img {
   flex: 1;
   color: #4c5a77;
   text-transform: capitalize;
+  color: var(--search_color);
 }
 ::placeholder {
   font-family: 'Montserrat', sans-serif;
@@ -198,6 +202,7 @@ img {
   box-shadow: 2px 5px 25px -3px rgba(180, 180, 180, 0.25);
   padding: 40px;
   width: calc(50% - 20px);
+  background: var(--card_bg);
 }
 
 .card_city {
@@ -315,7 +320,7 @@ img {
 }
 
 .cards_dayly {
-  /* display: flex; */
+  background: var(--card_bg);
   justify-content: space-between;
   border-radius: 0px 0px 20px 20px;
   box-shadow: 2px 5px 25px -3px rgba(180, 180, 180, 0.25);
@@ -330,6 +335,7 @@ img {
   width: calc(20% - 10px);
   padding: 10px;
   border-radius: 10px;
+  background: var(--card_daily_bg);
 }
 .card_dayly-img {
   width: 90%;
@@ -345,9 +351,10 @@ img {
   border-radius: 5px;
   padding: 10px 20px;
   font-size: 18px;
-  color: #fff;
+  color: var(--search_color);
   box-shadow: 2px 5px 25px -3px rgba(180, 180, 180, 0.25);
   margin-bottom: 10px;
+  background: var(--card_bg);
 }
 .page_wrapper .tabs.active {
   background: #4793FF;
