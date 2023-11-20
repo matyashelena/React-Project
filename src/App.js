@@ -50,12 +50,10 @@ function Page() {
     let localUrlDaily = `${API_URL_DAILY}lat=${lat}&lon=${lon}&appid=${API_KEY}`;
     fetch(localUrlDaily, options)
     .then((res) => {
-      console.log(res);
       return res.json()
     }) 
     .then((response) => {
       response ? setWeatherdaily(response) : setWeatherdaily ({});
-      console.log(response);
     })
     .catch(err => console.error(err)) 
   }
@@ -68,12 +66,10 @@ function Page() {
           setIsErrore(true);
           return false;
         }
-        console.log(res);
         return res.json()
       })
       .then((response) => {
        response ? setWeather(response) : setWeather ({})
-      //  console.log(response);
       if (response) {
         setLon(response.coord.lon);
         setLat(response.coord.lat);
@@ -85,6 +81,8 @@ function Page() {
 
   return (
       <div className='container'>
+        <DarkMode/>
+        
         <SearcField 
         inputHandler = {value => setValue(value)}
         searchHandler = {searchHandler}
@@ -116,7 +114,7 @@ function SearcField(props) {
   return (
       
       <header className="header">
-         <DarkMode/>
+        
         <Logo/>
       <div className="search">
       <Input type='search' placeholder='search city' value={props.value} onInputChange={inputHandler}/>
