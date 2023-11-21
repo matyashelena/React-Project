@@ -82,18 +82,19 @@ function Page() {
   return (
       <div className='container'>
         <DarkMode/>
-        
         <SearcField 
         inputHandler = {value => setValue(value)}
         searchHandler = {searchHandler}
         isErrore = {isErrore}
         value = {value}/>
 
+        {isErrore && <p className='invalid_name'>City not found! Please enter the correct city name</p>}
+
         {weather && weather.main 
         ? <DayWeather weather={weather}/> 
         : null}
 
-        {isErrore && <p className='invalid_name'>City not found! Please enter the correct city name</p>}
+        
 
         {Object.keys(weather).length && Object.keys(weatherdaily).length
         ? <DailyWeather weather={weather} weatherdaily={weatherdaily}/>
@@ -102,7 +103,7 @@ function Page() {
       </div>
   )
 }
- 
+
 function SearcField(props) {
   const inputHandler = (value) => {
     props.inputHandler(value)
@@ -112,15 +113,12 @@ function SearcField(props) {
     props.searchHandler && props.searchHandler();
   }
   return (
-      
       <header className="header">
-        
         <Logo/>
-      <div className="search">
-      <Input type='search' placeholder='search city' value={props.value} onInputChange={inputHandler}/>
-      <Button clicker={searchHandler}><img src={icon_search} alt=''/></Button>
-        
-      </div>
+        <div className="search">
+          <Input type='search' placeholder='search city' value={props.value} onInputChange={inputHandler}/>
+          <Button clicker={searchHandler}><img src={icon_search} alt=''/></Button>
+        </div>
       </header>      
   )
 }
