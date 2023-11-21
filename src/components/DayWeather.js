@@ -6,12 +6,12 @@ import icon_humidity from '../images/humidity_icon.png';
 import icon_evaporator from '../images/precipitation.png';
 import icon_wind from '../images/wind.svg';
 import clouds from '../images/clouds1.png';
-import humidity from '../images/humidity1.png';
+import humidity from '../images/humidity.png';
 import rain from '../images/rain1.png';
-import clear from '../images/clear1.png';
+import clear from '../images/clear.png';
 import haze from '../images/haze.png'
-import snow from '../images/snow1.png';
-import drizzle from '../images/drizzle1.png';
+import snow from '../images/snow.png';
+import drizzle from '../images/drizzle.png';
 import fog from '../images/fog.png'
 
 function DayWeather(props) {
