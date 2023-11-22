@@ -332,12 +332,17 @@ img {
 @media screen and (max-width: 992px) {
   .card_feel-name {
     font-size: 18px;
+    width: none;
   }
   .card_feel-like {
     font-size: 16px;
   }
   .card_daily-date {
     font-size: 16px;
+  }
+  .icon {
+    width: 45px;
+    height: 45px;
   }
 }
 
@@ -351,6 +356,9 @@ img {
   .card {
     width: 100%;
   }
+  .weather_temp {
+    font-size: 56px;
+}
   .cards_daily {
     flex-wrap: wrap;
     justify-content: start;
@@ -366,6 +374,9 @@ img {
   .card_daily {
     width: calc(33.33% - 10px);
   }
+  .card {
+    padding: 20px;
+  }
   
 }
 
@@ -375,6 +386,9 @@ img {
   } 
   .card_daily {
     width: calc(50% - 10px);
+  }
+  .moment {
+    font-size: 30px;
   }
   .card_feel {
     flex-direction: row;
@@ -399,13 +413,10 @@ img {
     font-size: 16px;
   }
   .moment {
-    font-size: 25px;
+    font-size: 20px;
   }
   .search button img {
     width: 15px;
   }
-  .icon {
-    width: 45px;
-    height: 45px;
-  }
+  
 }
