@@ -18,7 +18,7 @@ function DayWeather(props) {
   const tempNow = props.weather.main.temp.toFixed();
   let weatherTempNow;
   if (tempNow === '-0') {
-    weatherTempNow = 0
+    weatherTempNow = '0'
   } else {
     weatherTempNow = tempNow
   }
