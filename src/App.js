@@ -66,6 +66,7 @@ function Page() {
           setIsErrore(true);
           return false;
         }
+        setIsErrore(false);
         return res.json()
       })
       .then((response) => {
@@ -115,10 +116,10 @@ function SearcField(props) {
   return (
       <header className="header">
         <Logo/>
-        <div className="search">
+        <form onSubmit={searchHandler} className="search">
           <Input type='search' placeholder='search city' value={props.value} onInputChange={inputHandler}/>
           <Button clicker={searchHandler}><img src={icon_search} alt=''/></Button>
-        </div>
+        </form>
       </header>      
   )
 }

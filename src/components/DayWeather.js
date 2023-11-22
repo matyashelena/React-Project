@@ -15,6 +15,13 @@ import drizzle from '../images/drizzle.png';
 import fog from '../images/fog.png'
 
 function DayWeather(props) {
+  const tempNow = props.weather.main.temp.toFixed();
+  let weatherTempNow;
+  if (tempNow === '-0') {
+    weatherTempNow = 0
+  } else {
+    weatherTempNow = tempNow
+  }
 
   let icon_weather;
   const icon_desc = props.weather.weather[0].main;
@@ -55,7 +62,7 @@ function DayWeather(props) {
         <div className="card card_city">
           <div className="weather_header">
             <div className="weather_main">
-              <div className="weather_temp">{props.weather.main.temp.toFixed()}°</div>
+              <div className="weather_temp">{weatherTempNow}°</div>
               <div className='moment'>{moment().format('dddd')} 
               </div>
             </div>
