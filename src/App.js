@@ -74,8 +74,7 @@ function Page() {
       if (response) {
         setLon(response.coord.lon);
         setLat(response.coord.lat);
-      }
-        
+      }  
       })
       .catch(err => console.error(err))
   }

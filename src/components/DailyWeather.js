@@ -41,7 +41,7 @@ function DailyWeather(props) {
         </div>
         <div className="card_daily">
           <h3 className='card_daily-date'>Precipitation probability:</h3>
-          <p className='card_daily-date'>{props.weatherdaily.list[0].pop}%</p>
+          <p className='card_daily-date'>{(props.weatherdaily.list[0].pop)*100}%</p>
           <img className='card_daily-img' src={icon_evaporator} alt="" />
         </div>
         <div className="card_daily">
