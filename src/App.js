@@ -95,8 +95,6 @@ function Page() {
         ? <DayWeather weather={weather}/> 
         : null}
 
-        
-
         {Object.keys(weather).length && Object.keys(weatherdaily).length
         ? <DailyWeather weather={weather} weatherdaily={weatherdaily}/>
         : null}
