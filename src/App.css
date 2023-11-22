@@ -189,6 +189,7 @@ img {
   background-image: url(../src/images/cloud_image.png);
   background-repeat: no-repeat;
   background-position: 100% 0;
+  opacity: .3;
 }
 
 .card_feel-item {
@@ -214,6 +215,7 @@ img {
 .card_feel-like {
   width: 100%;
   max-width: max-content;
+  color: #000;
 }
 
 .weather_header {
